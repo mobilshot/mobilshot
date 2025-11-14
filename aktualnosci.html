@@ -1,8 +1,8 @@
 
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aktualności – MobilShot</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><img src="logo.png" class="logo"><div><h1>Aktualności</h1></div></header>
-<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html">Kontakt</a></nav>
+<header class="header"><div class="brand"><img src="logo.png" class="logo"><div><h1>Aktualności</h1></div></div></header>
+<nav style="padding:10px 24px"><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html">Kontakt</a></nav>
 <main class="container">
 <section class="card">
 <h2>Dodaj aktualność</h2>
@@ -16,9 +16,6 @@
 <div id="newsList"></div>
 </section>
 </main>
-<div class="cms-panel">
-  <button class="btn" onclick="toggleCMS()">Tryb edycji</button>
-  <button class="btn" onclick="publishNews()" id="publishAlways">Publikuj aktualności (online)</button>
-</div>
+<div class="cms-panel"><button class="btn" onclick="toggleCMS()">Tryb edycji</button><button class="btn publish-btn" onclick="publishNews()" style="display:none;">Publikuj aktualności (online)</button></div>
 <script src="cookie.js"></script><script src="cms.js"></script>
 </body></html>

@@ -1,22 +1,31 @@
 
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MobilShot – Mobilna Strzelnica</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><img src="logo.png" class="logo"><div><h1>MobilShot</h1><div class="small">Strzelaj bezpiecznie</div></div></header>
+<header class="header"><div class="brand"><img src="logo.png" class="logo"><div><h1>MobilShot</h1><div class="small">Strzelaj bezpiecznie</div></div></div>
 <nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="aktualnosci.html">Aktualności</a> <a href="regulamin.html">Regulamin</a> <a href="polityka.html">RODO</a> <a href="kontakt.html">Kontakt</a></nav>
+</header>
 <main class="container">
-<div class="card">
+<div class="controls card">
+<button id="editBtn" class="btn" onclick="toggleCMS()">Tryb edycji</button>
+<button id="saveBtn" class="btn" onclick="saveAll()">Zapisz</button>
+<button id="resetBtn" class="btn" onclick="resetAll()">Reset</button>
+<button id="themeBtn" class="btn light-toggle">Tryb</button>
+</div>
+<section class="card">
 <h2 data-key="home_title">MobilShot – mobilna strzelnica RAM, pneumatyczna i łucznicza</h2>
 <p data-key="home_text">MobilShot to mobilna strzelnica oferująca usługi na eventy, imprezy firmowe, pikniki i szkolenia. Zapewniamy sprzęt, cele reaktywne, tarcze papierowe, łuki klasyczne oraz pełne zabezpieczenia i instruktaż.</p>
-</div>
-<div class="card">
+</section>
+<section class="card">
 <h3>Ostatnie aktualności</h3>
 <div id="news_preview_list" class="small"></div>
 <p style="margin-top:10px"><a href="aktualnosci.html" class="btn">Zobacz wszystkie aktualności</a></p>
-</div>
+</section>
 </main>
 <div id="lightbox" onclick="closeLightbox()" style="display:none;align-items:center;justify-content:center;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999"><img style="max-width:90%;max-height:90%;border-radius:10px"></div>
-<script src="cookie.js"></script><script src="cms.js"></script>
+<script src="cookie.js"></script>
+<script src="cms.js"></script>
 <script>
+// populate preview from hosted JSON or local
 (function(){
   function renderPreview(list){
     const root=document.getElementById('news_preview_list');
