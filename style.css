@@ -1,16 +1,23 @@
 
 :root{
-  --bg:#f4f2ec; --card:#fff; --text:#222; --muted:#6b6a66; --accent:#6b6a4b;
+  --bg: #f4f2ec;
+  --card: #ffffff;
+  --text: #222;
+  --muted: #6b6a66;
+  --accent: #6b6a4b;
 }
 [data-theme="dark"]{
-  --bg:#0f0f12; --card:#121216; --text:#e9e9ea; --muted:#a9a9a9; --accent:#c9a24a;
+  --bg: #0f0f12;
+  --card: #121216;
+  --text: #e9e9ea;
+  --muted: #a9a9a9;
+  --accent: #c9a24a;
 }
 *{box-sizing:border-box}
-body{font-family:Inter, Arial, Helvetica, sans-serif;background:var(--bg);color:var(--text);margin:0}
+body{font-family:Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
 .header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:transparent;border-bottom:1px solid rgba(0,0,0,0.04)}
 .brand{display:flex;align-items:center;gap:12px}
 .logo{height:56px}
-nav{padding:8px 24px;background:transparent}
 nav a{margin:0 8px;text-decoration:none;color:var(--text);font-weight:600}
 .container{max-width:1100px;margin:24px auto;padding:0 18px}
 .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06);margin-bottom:18px}
@@ -22,8 +29,6 @@ nav a{margin:0 8px;text-decoration:none;color:var(--text);font-weight:600}
 .gallery-grid img{width:100%;border-radius:8px;cursor:pointer}
 .caption{font-size:13px;color:var(--muted);margin-top:6px}
 .cookie-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);color:var(--text);padding:12px;display:flex;justify-content:space-between;align-items:center;z-index:9999;border-top:1px solid rgba(0,0,0,0.06)}
-.cms-panel{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;gap:8px}
-.contact-form label{display:block;margin-bottom:8px}
-.contact-form input,.contact-form textarea{width:100%;padding:8px;margin-top:4px;border:1px solid #ddd;border-radius:6px}
-.news-item{padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.light-toggle{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:6px 8px;border-radius:6px;color:var(--text);cursor:pointer}
+.hidden{display:none}
 @media(max-width:900px){.header{flex-direction:column;gap:8px}.brand h1{font-size:18px}nav{display:flex;gap:6px;flex-wrap:wrap}}
