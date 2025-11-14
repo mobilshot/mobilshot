@@ -118,8 +118,3 @@ window.addEventListener('DOMContentLoaded', ()=>{
   const addBtn = document.getElementById('addImgBtn');
   if(addBtn && fileInput) addBtn.addEventListener('click', ()=> addImageFile(fileInput.files[0]));
 });
-
-function toggleCMS(){
-  document.body.classList.toggle("cms-edit");
-  alert("Tryb edycji przełączony.");
-}
