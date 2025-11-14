@@ -1,11 +1,23 @@
+
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kontakt – MobilShot</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><div class="brand"><img src="logo.png" class="logo"><div><h1>Kontakt</h1></div></div></header>
-<nav style="padding:10px 24px"><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href='aktualnosci.html'>Aktualności</a></nav>
+<header class="header"><img src="logo.png" class="logo"><div><h1>Kontakt</h1></div></header>
+<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a></nav>
 <main class="container">
 <section class="card">
-<h2 data-key="kontakt_title">Kontakt</h2>
-<p data-key="kontakt_text">Telefon: <strong>606 280 827</strong><br>Email: <strong>mobilshot@wp.pl</strong></p>
+<h2>Kontakt z MobilShot</h2>
+<p>Telefon: <strong>606 280 827</strong><br>Email: <strong>mobilshot@wp.pl</strong></p>
+</section>
+<section class="card">
+<h2>Formularz kontaktowy</h2>
+<form action="https://formspree.io/f/mdkyenbg" method="POST" class="contact-form">
+<label>Imię i nazwisko<input type="text" name="name" required></label>
+<label>Adres e-mail<input type="email" name="email" required></label>
+<label>Telefon<input type="tel" name="phone"></label>
+<label>Wiadomość<textarea name="message" rows="5" required></textarea></label>
+<button type="submit" class="btn">Wyślij wiadomość</button>
+</form>
 </section>
 </main>
-<script src="cms.js"></script><script src='cookie.js'></script></body></html>
+<script src="cookie.js"></script><script src="cms.js"></script>
+</body></html>

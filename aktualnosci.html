@@ -1,11 +1,8 @@
 
-<!doctype html><html lang="pl">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aktualności – MobilShot</title>
-<link rel="stylesheet" href="style.css">
-</head><body>
-<header class="header"><div class="brand"><img src="logo.png" class="logo"><div><h1>Aktualności</h1></div></div></header>
-<nav style="padding:10px 24px"><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html">Kontakt</a></nav>
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aktualności – MobilShot</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="header"><img src="logo.png" class="logo"><div><h1>Aktualności</h1></div></header>
+<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html">Kontakt</a></nav>
 <main class="container">
 <section class="card">
 <h2>Dodaj aktualność</h2>
@@ -14,72 +11,14 @@
 <button id="addNewsBtn" class="btn">Dodaj aktualność</button>
 <button id="clearNewsBtn" class="btn" style="background:#b23;margin-left:8px">Usuń wszystkie</button>
 </section>
-
 <section class="card" style="margin-top:12px">
 <h2>Lista aktualności</h2>
 <div id="newsList"></div>
 </section>
-
 </main>
-<script>
-function loadNews(){
-  const list = JSON.parse(localStorage.getItem('news')||'[]');
-  const root = document.getElementById('newsList');
-  root.innerHTML='';
-  list.sort((a,b)=>b.date - a.date);
-  list.forEach((n,idx)=>{
-    const div = document.createElement('div');
-    div.style.borderBottom='1px solid rgba(0,0,0,0.06)'; div.style.padding='10px 0';
-    const d = new Date(n.date);
-    div.innerHTML = `<strong>${n.title}</strong> <span class="small"> - ${d.toLocaleString()}</span><p>${n.body}</p>`;
-    const edit = document.createElement('button'); edit.className='btn'; edit.textContent='Edytuj'; edit.style.marginRight='8px';
-    edit.onclick = ()=>{ const t=prompt('Tytuł', n.title); if(t!==null){ const b=prompt('Treść', n.body); if(b!==null){ list[idx].title=t; list[idx].body=b; localStorage.setItem('news', JSON.stringify(list)); loadNews(); } } };
-    const del = document.createElement('button'); del.className='btn'; del.textContent='Usuń'; del.style.background='#b23';
-    del.onclick = ()=>{ if(confirm('Usunąć ten wpis?')){ list.splice(idx,1); localStorage.setItem('news', JSON.stringify(list)); loadNews(); } };
-    div.appendChild(edit); div.appendChild(del);
-    root.appendChild(div);
-  });
-}
-
-document.getElementById('addNewsBtn').addEventListener('click', ()=>{
-  const title = document.getElementById('newsTitle').value.trim();
-  const body = document.getElementById('newsBody').value.trim();
-  if(!title || !body){ alert('Wypełnij tytuł i treść'); return; }
-  const list = JSON.parse(localStorage.getItem('news')||'[]');
-  list.push({title:title, body:body, date: Date.now()});
-  localStorage.setItem('news', JSON.stringify(list));
-  document.getElementById('newsTitle').value=''; document.getElementById('newsBody').value='';
-  loadNews();
-});
-document.getElementById('clearNewsBtn').addEventListener('click', ()=>{ if(confirm('Usunąć wszystkie aktualności?')){ localStorage.removeItem('news'); loadNews(); } });
-
-// DEFAULT NEWS INJECTION
-(function(){
-  const existing = localStorage.getItem('news');
-  if(!existing){
-    const def = [
-
-{
-  title: "Zalety strzelania z łuku",
-  body: "Strzelanie z łuku ma wiele zalet: • Poprawa koncentracji • Wzmacnianie mięśni • Redukcja stresu • Poprawa postawy ciała • Rozwój cierpliwości i wytrwałości • Zwiększenie pewności siebie • Społeczność i integracja • Zwiększenie koordynacji ruchowej.",
-  date: Date.now() - 500000
-},
-
-      {
-        title: "OPIS SYSTEMU STRZELECKIEGO RAM",
-        body: "Skrót RAM oznacza REAL ACTION MARKER. Broń tego typu przeznaczona jest do treningów strzeleckich i obronnych dla osób cywilnych i formacji ochronnych. Na jej sprzedaż, zakup, posiadanie i używanie nie jest potrzebne żadne zezwolenie ani rejestracja. RAM działa na zasadzie urządzenia pneumatycznego na sprężony CO2. Energia kinetyczna pocisku nie przekracza 17 Jouli. System RAM jest tak przemyślany, aby zapewnić jak największy realizm szkolącym się strzelcom. Znajduje uznanie w organizacjach i stowarzyszeniach zajmujących się szkoleniem w działaniach CQB/CT i innych. RAM jest częścią efektywnego sposobu szkolenia przez amerykańską organizację NTOA (NATIONAL TACTICAL OFFICERS ASSOCIATION).",
-        date: Date.now()
-      },
-      {
-        title: "Zalety treningu z replikami broni palnej",
-        body: "Trening z replikami broni palnej pozwala na poprawę celności, koordynacji oraz kondycji fizycznej. Korzyści: poprawa celności, rozwój motoryki, bezpieczeństwo, zwiększenie koncentracji, przygotowanie do sytuacji bojowych, rozwój kondycji fizycznej oraz korzyści psychologiczne.",
-        date: Date.now() - 100000
-      }
-    ];
-    localStorage.setItem('news', JSON.stringify(def));
-  }
-})();
-
-window.addEventListener('DOMContentLoaded', loadNews);
-</script>
+<div class="cms-panel">
+  <button class="btn" onclick="toggleCMS()">Tryb edycji</button>
+  <button class="btn" onclick="publishNews()" id="publishAlways">Publikuj aktualności (online)</button>
+</div>
+<script src="cookie.js"></script><script src="cms.js"></script>
 </body></html>
