@@ -1,23 +1,24 @@
 
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kontakt – MobilShot</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><img src="logo.png" class="logo"><div><h1>Kontakt</h1></div></header>
-<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a></nav>
+<header class="header"><img src="logo.png" class="logo"><div class="brand"><h1>Kontakt</h1></div></header>
+<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html" class="active">Kontakt</a></nav>
 <main class="container">
-<section class="card">
-<h2>Kontakt z MobilShot</h2>
-<p>Telefon: <strong>606 280 827</strong><br>Email: <strong>mobilshot@wp.pl</strong></p>
-</section>
-<section class="card">
-<h2>Formularz kontaktowy</h2>
-<form action="https://formspree.io/f/mdkyenbg" method="POST" class="contact-form">
-<label>Imię i nazwisko<input type="text" name="name" required></label>
-<label>Adres e-mail<input type="email" name="email" required></label>
-<label>Telefon<input type="tel" name="phone"></label>
-<label>Wiadomość<textarea name="message" rows="5" required></textarea></label>
-<button type="submit" class="btn">Wyślij wiadomość</button>
-</form>
-</section>
+<div class="card">
+  <h2>Kontakt z MobilShot</h2>
+  <p>Telefon: <a href="tel:606280827"><strong>606 280 827</strong></a><br>Email: <a href="mailto:mobilshot@wp.pl"><strong>mobilshot@wp.pl</strong></a></p>
+</div>
+<div class="card">
+  <h2>Formularz kontaktowy</h2>
+  <form action="https://formspree.io/f/mdkyenbg" method="POST" class="contact-form">
+    <label>Imię i nazwisko<input type="text" name="name" required></label>
+    <label>Adres e-mail<input type="email" name="email" required></label>
+    <label>Telefon<input type="tel" name="phone"></label>
+    <label>Wiadomość<textarea name="message" rows="5" required></textarea></label>
+    <button type="submit" class="btn">Wyślij wiadomość</button>
+  </form>
+</div>
 </main>
 <script src="cookie.js"></script><script src="cms.js"></script>
+<div class="cms-panel"><button class="btn" onclick="toggleCMS()">Tryb edycji</button><button class="btn" onclick="saveAll()">Zapisz</button><button class="btn" onclick="resetAll()">Reset</button></div>
 </body></html>

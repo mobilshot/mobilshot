@@ -1,17 +1,21 @@
 
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MobilShot – Mobilna Strzelnica</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><img src="logo.png" class="logo"><div><h1>MobilShot</h1><div class="small">Strzelaj bezpiecznie</div></div></header>
-<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="aktualnosci.html">Aktualności</a> <a href="regulamin.html">Regulamin</a> <a href="polityka.html">RODO</a> <a href="kontakt.html">Kontakt</a></nav>
+<header class="header"><img src="logo.png" class="logo" alt="MobilShot Logo"><div class="brand"><h1>MobilShot</h1><div class="tag">Strzelaj bezpiecznie</div></div></header>
+<nav><a href="index.html" class="active">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="aktualnosci.html">Aktualności</a> <a href="regulamin.html">Regulamin</a> <a href="polityka.html">RODO</a> <a href="kontakt.html">Kontakt</a></nav>
 <main class="container">
 <div class="card">
-<h2 data-key="home_title">MobilShot – mobilna strzelnica RAM, pneumatyczna i łucznicza</h2>
-<p data-key="home_text">MobilShot to mobilna strzelnica oferująca usługi na eventy, imprezy firmowe, pikniki i szkolenia. Zapewniamy sprzęt, cele reaktywne, tarcze papierowe, łuki klasyczne oraz pełne zabezpieczenia i instruktaż.</p>
+  <span class="badge">Mobilna strzelnica</span>
+  <span class="badge">RAM</span>
+  <span class="badge">Pneumatyczna</span>
+  <span class="badge">Łucznicza</span>
+  <h2 data-key="home_title">MobilShot – mobilna strzelnica RAM, pneumatyczna i łucznicza</h2>
+  <p data-key="home_text">Profesjonalna obsługa eventów, pikników, szkoleń oraz imprez integracyjnych. Realistyczny sprzęt, cele reaktywne, tarcze papierowe i pełne zabezpieczenia.</p>
 </div>
 <div class="card">
-<h3>Ostatnie aktualności</h3>
-<div id="news_preview_list" class="small"></div>
-<p style="margin-top:10px"><a href="aktualnosci.html" class="btn">Zobacz wszystkie aktualności</a></p>
+  <h3>Ostatnie aktualności</h3>
+  <div id="news_preview_list" class="small"></div>
+  <p style="margin-top:10px"><a href="aktualnosci.html" class="btn">Zobacz wszystkie aktualności</a></p>
 </div>
 </main>
 <div id="lightbox" onclick="closeLightbox()" style="display:none;align-items:center;justify-content:center;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999"><img style="max-width:90%;max-height:90%;border-radius:10px"></div>
@@ -19,19 +23,14 @@
 <script>
 (function(){
   function renderPreview(list){
-    const root=document.getElementById('news_preview_list');
-    if(!root) return;
-    root.innerHTML='';
-    list.sort((a,b)=>b.date-a.date);
-    const preview = list.slice(0,3);
-    preview.forEach(n=>{
-      const d=new Date(n.date);
-      const el=document.createElement('div'); el.style.padding='6px 0';
-      el.innerHTML = '<strong>'+n.title+'</strong> <span class="small"> - '+d.toLocaleDateString()+'</span><div>'+(n.body.length>200?n.body.substring(0,200)+'...':n.body)+'</div>';
-      root.appendChild(el);
-    });
+    const root=document.getElementById('news_preview_list'); if(!root) return; root.innerHTML='';
+    list.sort((a,b)=>b.date-a.date); const preview=list.slice(0,3);
+    preview.forEach(n=>{ const d=new Date(n.date); const el=document.createElement('div'); el.style.padding='6px 0';
+      el.innerHTML='<strong>'+n.title+'</strong> <span class="small"> - '+d.toLocaleDateString()+'</span><div>'+(n.body.length>200?n.body.substring(0,200)+'...':n.body)+'</div>'; root.appendChild(el); });
   }
   fetch('aktualnosci.json').then(r=>{ if(r.ok) return r.json(); throw 0; }).then(data=>renderPreview(data)).catch(()=>{ renderPreview(JSON.parse(localStorage.getItem('news')||'[]')) });
 })();
 </script>
+<div class="cms-panel"><button class="btn" onclick="toggleCMS()">Tryb edycji</button><button class="btn" onclick="saveAll()">Zapisz</button><button class="btn" onclick="resetAll()">Reset</button></div>
+<footer class="footer">© 2025 MobilShot – Mobilna Strzelnica RAM, Pneumatyczna i Łucznicza</footer>
 </body></html>

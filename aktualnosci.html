@@ -1,24 +1,24 @@
 
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aktualności – MobilShot</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><img src="logo.png" class="logo"><div><h1>Aktualności</h1></div></header>
-<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html">Kontakt</a></nav>
+<header class="header"><img src="logo.png" class="logo"><div class="brand"><h1>Aktualności</h1></div></header>
+<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html">Galeria</a> <a href="kontakt.html">Kontakt</a> <a href="aktualnosci.html" class="active">Aktualności</a></nav>
 <main class="container">
 <section class="card">
-<h2>Dodaj aktualność</h2>
-<label>Tytuł</label><br><input id="newsTitle" style="width:100%;padding:8px;margin-bottom:8px"><br>
-<label>Treść</label><br><textarea id="newsBody" rows="5" style="width:100%;padding:8px"></textarea><br>
-<button id="addNewsBtn" class="btn">Dodaj aktualność</button>
-<button id="clearNewsBtn" class="btn" style="background:#b23;margin-left:8px">Usuń wszystkie</button>
+  <h2>Dodaj aktualność</h2>
+  <label>Tytuł</label><br><input id="newsTitle" style="width:100%;padding:8px;margin-bottom:8px"><br>
+  <label>Treść</label><br><textarea id="newsBody" rows="5" style="width:100%;padding:8px"></textarea><br>
+  <button id="addNewsBtn" class="btn">Dodaj aktualność</button>
+  <button id="clearNewsBtn" class="btn" style="background:#b23;margin-left:8px" onclick="localStorage.removeItem('news'); location.reload();">Usuń wszystkie</button>
 </section>
 <section class="card" style="margin-top:12px">
-<h2>Lista aktualności</h2>
-<div id="newsList"></div>
+  <h2>Lista aktualności</h2>
+  <div id="newsList"></div>
 </section>
 </main>
 <div class="cms-panel">
   <button class="btn" onclick="toggleCMS()">Tryb edycji</button>
-  <button class="btn" onclick="publishNews()" id="publishAlways">Publikuj aktualności (online)</button>
+  <button class="btn" onclick="publishNews()">Publikuj aktualności (online)</button>
 </div>
 <script src="cookie.js"></script><script src="cms.js"></script>
 </body></html>

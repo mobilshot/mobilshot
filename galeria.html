@@ -1,17 +1,18 @@
 
 <!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Galeria – MobilShot</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="header"><img src="logo.png" class="logo"><div><h1>Galeria</h1></div></header>
-<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="kontakt.html">Kontakt</a></nav>
+<header class="header"><img src="logo.png" class="logo"><div class="brand"><h1>Galeria</h1></div></header>
+<nav><a href="index.html">Start</a> <a href="o_nas.html">O nas</a> <a href="oferta.html">Oferta</a> <a href="cennik.html">Cennik</a> <a href="galeria.html" class="active">Galeria</a> <a href="kontakt.html">Kontakt</a></nav>
 <main class="container">
 <div class="card">
-<div id="gallery" class="gallery-grid"></div>
-<div style="margin-top:12px">
-<input id="fileInput" type="file" accept="image/*">
-<button id="addImgBtn" class="btn">Dodaj zdjęcie</button>
-</div>
+  <div id="gallery" class="gallery-grid"></div>
+  <div style="margin-top:12px">
+    <input id="fileInput" type="file" accept="image/*">
+    <button id="addImgBtn" class="btn">Dodaj zdjęcie</button>
+  </div>
 </div>
 </main>
 <div id="lightbox" onclick="closeLightbox()" style="display:none;align-items:center;justify-content:center;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999"><img style="max-width:90%;max-height:90%;border-radius:10px"></div>
 <script src="cookie.js"></script><script src="cms.js"></script>
+<div class="cms-panel"><button class="btn" onclick="toggleCMS()">Tryb edycji</button><button class="btn" onclick="saveAll()">Zapisz</button><button class="btn" onclick="resetAll()">Reset</button></div>
 </body></html>
