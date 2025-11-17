@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Pliki do pobrania</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.file-item { border:1px solid #ccc; padding:10px; margin:10px 0; border-radius:8px; }
+.cms-file-btn { padding:8px 14px; margin:10px 0; display:inline-block; cursor:pointer; background:#222; color:#fff; border-radius:6px; }
+</style>
+</head>
+<body>
+<header class='header'><nav class='nav'>
+<a href='index.html'>Start</a> <a href='pliki.html'>Pliki</a>
+</nav></header>
+
+<main class='section'>
+<h1>Pliki do pobrania</h1>
+
+<div id="file_list"></div>
+
+<button class="cms-file-btn" onclick="addFile()">Dodaj plik</button>
+</main>
+
+<footer class='footer'>© 2025 MobilShot</footer>
+
+<script src="cms.js"></script>
+
+<script>
+// Load files from localStorage
+function loadFiles(){
+  const files = JSON.parse(localStorage.getItem("download_files") || "[]");
+  const box = document.getElementById("file_list");
+  box.innerHTML="";
+  files.forEach((f,i)=>{
+    box.innerHTML += `<div class='file-item'>
+      <a href='${f.url}' download>${f.name}</a>
+      <button onclick='removeFile(${i})'>Usuń</button>
+    </div>`;
+  });
+}
+function addFile(){
+  const name = prompt("Nazwa pliku do wyświetlenia:");
+  const url = prompt("URL pliku do pobrania (może być PDF w katalogu):");
+  if(name && url){
+    const files = JSON.parse(localStorage.getItem("download_files") || "[]");
+    files.push({name:name, url:url});
+    localStorage.setItem("download_files", JSON.stringify(files));
+    loadFiles();
+  }
+}
+function removeFile(i){
+  const files = JSON.parse(localStorage.getItem("download_files") || "[]");
+  files.splice(i,1);
+  localStorage.setItem("download_files", JSON.stringify(files));
+  loadFiles();
+}
+loadFiles();
+</script>
+
+</body>
+</html>

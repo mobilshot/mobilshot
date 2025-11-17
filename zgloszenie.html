@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zgłoś wydarzenie – MobilShot</title>
+<link rel="preload" as="image" href="assets/bg_mobilshot.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <div class="brand"><img src="logo.png" alt="MobilShot" style="width:34px;height:34px" style="width:80px;height:auto;"> MobilShot</div>
+    <div class="spacer"></div>
+    <nav class="menu">
+      <a href="index.html">Start</a>
+      <a href="oferta.html">Oferta</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="zgloszenie.html">Zgłoś wydarzenie</a>
+      <a href="kontakt.html">Kontakt</a>
+     <a href='pliki.html'>Pliki</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Zgłoś wydarzenie</h1>
+    <p>Uzupełnij poniższy formularz. Odpowiemy tak szybko, jak to możliwe.</p>
+  </div>
+</section>
+
+<div class="container section">
+  <div class="panel">
+    <form id="eventForm" action="https://formspree.io/f/mgvrneyd" method="POST">
+      <div class="form-row">
+        <div>
+          <label for="name">Imię i nazwisko</label>
+          <input class="input" id="name" name="name" type="text" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="phone">Numer telefonu</label>
+          <input class="input" id="phone" name="phone" type="tel" required>
+        </div>
+        <div>
+          <label for="date">Data wydarzenia</label>
+          <input class="input" id="date" name="date" type="date">
+        </div>
+      </div>
+      <div>
+        <label for="title">Tytuł / nazwa wydarzenia</label>
+        <input class="input" id="title" name="title" type="text" required>
+      </div>
+      <div>
+        <label for="desc">Opis wydarzenia</label>
+        <textarea id="desc" name="description" required></textarea>
+      </div>
+      <div>
+        <label for="photo">Dodaj zdjęcie (opcjonalnie)</label>
+        <input class="input" id="photo" name="attachment" type="file" accept="image/*">
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" name="rodo" required style="margin-top:3px">
+        <span>Wyrażam zgodę na przetwarzanie danych osobowych w celu obsługi zgłoszenia, zgodnie z <a href="polityka.html" target="_blank" rel="noopener">Polityką RODO</a>.</span>
+      </label>
+      <button class="btn" type="submit">Wyślij zgłoszenie</button>
+      <p id="formStatus" style="display:none" class="success">Dziękujemy! Zgłoszenie zostało wysłane.</p>
+      <p id="formError" style="display:none" class="error">Nie udało się wysłać. Spróbuj ponownie.</p>
+      <input type="hidden" name="_subject" value="Nowe zgłoszenie – MobilShot">
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">© 2025 MobilShot – Strzelaj bezpiecznie</div>
+</footer>
+
+<script>
+const form = document.getElementById('eventForm');
+const statusOK = document.getElementById('formStatus');
+const statusErr = document.getElementById('formError');
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  statusOK.style.display = 'none';
+  statusErr.style.display = 'none';
+  const data = new FormData(form);
+  try {
+    const r = await fetch(form.action, { method:'POST', body:data, headers:{'Accept':'application/json'} });
+    if (r.ok) { statusOK.style.display = 'block'; form.reset(); window.scrollTo({ top:0, behavior:'smooth' }); }
+    else { statusErr.style.display = 'block'; }
+  } catch(err) { statusErr.style.display = 'block'; }
+});
+</script>
+<script src="cookie.js"></script>
+<script src="cms.js"></script>
+</body>
+</html>

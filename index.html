@@ -1,0 +1,19 @@
+<!doctype html><html lang='pl'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>MobilShot</title><link rel='stylesheet' href='style.css'></head><body>
+<header class='header'><nav class='nav'><img src='logo.png' class='logo' style="width:80px;height:auto;"><div class='brand'><div class='title'>MobilShot</div><div class='tag'>Strzelaj bezpiecznie</div></div><div class='menu'><a href='index.html' style='text-decoration:underline'>Start</a> <a href='o_nas.html'>O nas</a> <a href='oferta.html'>Oferta</a> <a href='cennik.html'>Cennik</a> <a href='galeria.html'>Galeria</a> <a href='aktualnosci.html'>Aktualności</a> <a href='zgloszenie.html'>Zgłoś wydarzenie</a> <a href='regulamin.html'>Regulamin</a> <a href='polityka.html'>RODO</a> <a href='kontakt.html'>Kontakt</a></div> <a href='pliki.html'>Pliki</a></nav></header>
+<main class='section'>
+  <div class='card col-12'>
+    <h1 data-key='home_title'>MobilShot – mobilna strzelnica RAM, pneumatyczna i łucznicza</h1>
+    <p data-key='home_text'>Obsługa eventów, pikników i szkoleń. Realistyczne repliki, cele reaktywne, tarcze papierowe i zabezpieczenia.</p>
+    <a class='btn' href='zgloszenie.html'>Zgłoś wydarzenie</a>
+  </div>
+  <div class='card col-12'>
+    <h3>Ostatnie aktualności</h3>
+    <div id='news_preview_list'></div>
+    <p style='margin-top:10px'><a class='btn' href='aktualnosci.html'>Zobacz wszystkie</a></p>
+  </div>
+</main>
+<div class='cms-panel'><button class='btn' onclick='toggleCMS()'>Edycja</button><button class='btn secondary' onclick='saveAll()'>Zapisz</button><button class='btn' onclick='resetAll()'>Reset</button></div>
+<footer class='footer'>© 2025 MobilShot</footer>
+<script src='cookie.js'></script><script src='cms.js'></script>
+<script>(function(){function r(list){const root=document.getElementById('news_preview_list'); if(!root) return; root.innerHTML=''; list.sort((a,b)=>b.date-a.date); list.slice(0,3).forEach(n=>{const d=new Date(n.date); const el=document.createElement('div'); el.style.padding='6px 0'; el.innerHTML='<strong>'+n.title+'</strong> <span style=\'opacity:.7;margin-left:8px\'>'+d.toLocaleDateString()+'</span>'; root.appendChild(el);});} fetch('aktualnosci.json').then(x=>x.ok?x.json():Promise.reject()).then(d=>r(d)).catch(()=>r(JSON.parse(localStorage.getItem('news')||'[]')));})();</script>
+</body></html>
