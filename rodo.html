@@ -1,8 +1,9 @@
-<!doctype html><html lang='pl'><head><meta charset='utf-8'>
+<!doctype html><html lang='pl'><head><meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Mobilna strzelnica MobilShot – oferta, cennik, zgłoszenia.'><meta charset='utf-8'>
 <title>Polityka RODO</title><link rel='stylesheet' href='style.css'></head>
 <body>
-<header class="header">
-<nav class="nav">
+<header class="header"><div class='hamburger' onclick='toggleMenu()'>☰</div>
+<nav class="nav" style="display:flex;">
 <a href="index.html">Start</a>
 <a href="o_nas.html">O nas</a>
 <a href="oferta.html">Oferta</a>
@@ -55,6 +56,13 @@ if(!localStorage.getItem('cookieAccepted')){
 document.getElementById('acceptCookies').onclick=function(){
   localStorage.setItem('cookieAccepted','1');
   document.getElementById('cookieBanner').style.display='none';
+}
+</script>
+
+<script>
+function toggleMenu(){
+  const n=document.querySelector('.nav');
+  n.style.display = n.style.display==='flex'?'none':'flex';
 }
 </script>
 </body></html>
