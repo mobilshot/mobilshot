@@ -1,36 +1,72 @@
-<!doctype html><html lang='pl'><head><meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='Mobilna strzelnica MobilShot – oferta, cennik, zgłoszenia.'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Cennik</title><link rel='stylesheet' href='style.css'></head><body>
-<header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;'><div class='hamburger' onclick='toggleMenu()'>☰</div>
-<nav class="nav" style="display:flex;">
-<a href="index.html">Start</a>
-<a href="o_nas.html">O nas</a>
-<a href="oferta.html">Oferta</a>
-<a href="cennik.html">Cennik</a>
-<a href="aktualnosci.html">Aktualności</a>
-<a href="galeria.html">Galeria</a>
-<a href="zgloszenie.html">Zgłoszenie</a>
-<a href="kontakt.html">Kontakt</a>
-</nav>
-</header>
-<main class='section'><div class='card col-12'><h2 data-key='cennik_title'>Pakiety i opcje</h2><h3>Pakiety</h3><ul><li>Pakiet 1: 600 zł / 1 godz. – limit amunicji: 150 szt.</li><li>Pakiet 2: 1500 zł / 3 godz. – limit amunicji: 500 szt.</li><li>Pakiet 3: 2500 zł / 5 godz. – limit amunicji: 1000 szt.</li></ul><h3>Opcje dodatkowe</h3><ul><li>+ 1 godzina – 200 zł</li><li>Dodatkowa amunicja (RAM) – 50 zł / 100 szt. (w cenie naboje CO₂)</li></ul></div></main><div class='cms-panel'><button class='btn' onclick='toggleCMS()'>Edycja</button><button class='btn secondary' onclick='saveAll()'>Zapisz</button><button class='btn' onclick='resetAll()'>Reset</button></div><script src='cookie.js'></script><script src='cms.js'></script>
-<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32">
-  Ta strona używa plików cookies. <a href='cookies.html' style='color:#ff8a3d'>Polityka Cookies</a>.
-  <button id="acceptCookies" class="btn" style="margin-left:10px">Akceptuję</button>
-</div>
-<script>
-if(!localStorage.getItem('cookieAccepted')){
-  document.getElementById('cookieBanner').style.display='block';
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cennik – MobilShot</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#111; color:#eee; }
+h1 { text-align:center; margin-top:40px; color:#ffa321; }
+p.note { text-align:center; font-size:18px; margin:10px 20px; color:#fff; }
+.container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:40px 20px; }
+.card {
+  background:#1a1a1a; border-radius:18px; padding:25px; width:300px;
+  box-shadow:0 0 20px rgba(255,165,0,0.2); text-align:center;
+  border:1px solid #ffa32140;
 }
-document.getElementById('acceptCookies').onclick=function(){
-  localStorage.setItem('cookieAccepted','1');
-  document.getElementById('cookieBanner').style.display='none';
-}
-</script>
+.card h2 { color:#ffa321; margin-bottom:10px; }
+.card ul { list-style:none; padding:0; margin:0; }
+.card ul li { margin:8px 0; color:#ddd; }
+.price { font-size:28px; color:#ffa321; margin-top:15px; font-weight:bold; }
+.logo { height:60px; margin:20px auto; display:block; }
+</style>
+</head>
+<body>
 
-<script>
-function toggleMenu(){
-  const n=document.querySelector('.nav');
-  n.style.display = n.style.display==='flex'?'none':'flex';
-}
-</script>
-</body></html>
+<header>
+<img src="logo.png" alt="MobilShot logo" class="logo">
+</header>
+
+<h1>Cennik MobilShot</h1>
+<p class="note"><strong>Cennik podstawowy – ostateczna wycena zostanie dopasowana do wydarzenia.</strong></p>
+
+<div class="container">
+
+<div class="card">
+<h2>Pakiet Standard</h2>
+<ul>
+<li>Obsługa instruktora</li>
+<li>Bezpieczne stanowisko</li>
+<li>Podstawowe repliki ASG</li>
+<li>Do 20 uczestników</li>
+</ul>
+<div class="price">od 300 zł / h</div>
+</div>
+
+<div class="card">
+<h2>Pakiet Premium</h2>
+<ul>
+<li>Rozszerzona broń ASG</li>
+<li>Dodatkowe cele reaktywne</li>
+<li>Do 40 uczestników</li>
+<li>Wyższy limit amunicji</li>
+</ul>
+<div class="price">od 450 zł / h</div>
+</div>
+
+<div class="card">
+<h2>Pakiet Event</h2>
+<ul>
+<li>Duże wydarzenia</li>
+<li>Pełna zabudowa i stanowiska</li>
+<li>Wsparcie techniczne</li>
+<li>Indywidualna wycena</li>
+</ul>
+<div class="price">Wycena indywidualna</div>
+</div>
+
+</div>
+
+</body>
+</html>
