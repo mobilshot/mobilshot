@@ -13,7 +13,26 @@
   </div>
 </main>
 <div class='cms-panel'><button class='btn' onclick='toggleCMS()'>Edycja</button><button class='btn secondary' onclick='saveAll()'>Zapisz</button><button class='btn' onclick='resetAll()'>Reset</button></div>
-<footer class='footer'>© 2025 MobilShot</footer>
+<footer class='footer'>
+<a href='regulamin.html'>Regulamin</a> |
+<a href='rodo.html'>RODO</a> |
+<a href='cookies.html'>Cookies</a>
+<br>© 2025 MobilShot
+</footer>
 <script src='cookie.js'></script><script src='cms.js'></script>
 <script>(function(){function r(list){const root=document.getElementById('news_preview_list'); if(!root) return; root.innerHTML=''; list.sort((a,b)=>b.date-a.date); list.slice(0,3).forEach(n=>{const d=new Date(n.date); const el=document.createElement('div'); el.style.padding='6px 0'; el.innerHTML='<strong>'+n.title+'</strong> <span style=\'opacity:.7;margin-left:8px\'>'+d.toLocaleDateString()+'</span>'; root.appendChild(el);});} fetch('aktualnosci.json').then(x=>x.ok?x.json():Promise.reject()).then(d=>r(d)).catch(()=>r(JSON.parse(localStorage.getItem('news')||'[]')));})();</script>
+
+<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32">
+  Ta strona używa plików cookies. <a href='cookies.html' style='color:#ff8a3d'>Polityka Cookies</a>.
+  <button id="acceptCookies" class="btn" style="margin-left:10px">Akceptuję</button>
+</div>
+<script>
+if(!localStorage.getItem('cookieAccepted')){
+  document.getElementById('cookieBanner').style.display='block';
+}
+document.getElementById('acceptCookies').onclick=function(){
+  localStorage.setItem('cookieAccepted','1');
+  document.getElementById('cookieBanner').style.display='none';
+}
+</script>
 </body></html>
