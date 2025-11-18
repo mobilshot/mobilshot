@@ -88,3 +88,7 @@ textarea{min-height:160px;resize:vertical}
 @media (min-width:1024px){
   .card{grid-column:span 4}
 }
+@media(max-width:640px){
+  .nav{flex-wrap:wrap;gap:10px}
+  .nav a{display:block;width:100%}
+}
