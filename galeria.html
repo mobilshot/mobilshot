@@ -1,36 +1,17 @@
-<!doctype html><html lang='pl'><head><meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='Mobilna strzelnica MobilShot – oferta, cennik, zgłoszenia.'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Galeria</title><link rel='stylesheet' href='style.css'></head><body>
-<header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;'><div class='hamburger' onclick='toggleMenu()'>☰</div>
-<nav class="nav" style="display:flex;">
-<a href="index.html">Start</a>
-<a href="o_nas.html">O nas</a>
-<a href="oferta.html">Oferta</a>
-<a href="cennik.html">Cennik</a>
-<a href="aktualnosci.html">Aktualności</a>
-<a href="galeria.html">Galeria</a>
-<a href="zgloszenie.html">Zgłoszenie</a>
-<a href="kontakt.html">Kontakt</a>
-</nav>
-</header>
-<main class='section'><div class='card col-12'><div style='margin-top:12px'><input id='fileInput' type='file' accept='image/*'></div><script src='cookie.js'></script><script src='cms.js'></script>
-<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32">
-  Ta strona używa plików cookies. <a href='cookies.html' style='color:#ff8a3d'>Polityka Cookies</a>.
-  <button id="acceptCookies" class="btn" style="margin-left:10px">Akceptuję</button>
-</div>
+<!DOCTYPE html><html lang='pl'><body>
+<h1>Galeria</h1>
+<div id="galeria"></div>
 <script>
-if(!localStorage.getItem('cookieAccepted')){
-  document.getElementById('cookieBanner').style.display='block';
-}
-document.getElementById('acceptCookies').onclick=function(){
-  localStorage.setItem('cookieAccepted','1');
-  document.getElementById('cookieBanner').style.display='none';
-}
-</script>
-
-<script>
-function toggleMenu(){
-  const n=document.querySelector('.nav');
-  n.style.display = n.style.display==='flex'?'none':'flex';
-}
+fetch('uploads/galeria/')
+.then(r=>r.text())
+.then(t=>{
+ const div=document.getElementById('galeria');
+ const regex=/>[^<]+\.(jpg|png|jpeg|gif)</gi;
+ let match;
+ while(match=regex.exec(t)){
+   let file=match[0].substring(1);
+   div.innerHTML+=`<img src="uploads/galeria/${file}" style="width:200px;margin:10px;">`;
+ }
+});
 </script>
 </body></html>
