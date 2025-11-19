@@ -1,83 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cennik - MobilShot</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cennik - MobilShot</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header class="header">
-    <div class="container" style="display:flex; align-items:center; gap:18px;">
 
-        <!-- Logo + nazwa -->
-        <div class="brand">
-            <img src="logo.png" alt="MobilShot" style="height:40px;">
-            MobilShot
-        </div>
+  <img src="logo.png" alt="MobilShot logo" class="site-logo" style="height:50px;margin-right:10px;">
 
-        <div class="spacer"></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-        <!-- MENU — dokładnie jak na innych stronach -->
-        <nav class="nav" id="navMenu">
-            <a href="index.html">Start</a>
-            <a href="onas.html">O nas</a>
-            <a href="oferta.html">Oferta</a>
-            <a href="cennik.html" class="active">Cennik</a>
-            <a href="aktualnosci.html">Aktualności</a>
-            <a href="galeria.html">Galeria</a>
-            <a href="zgloszenie.html">Zgłoszenie</a>
-            <a href="kontakt.html">Kontakt</a>
-        </nav>
+  <nav class="nav" style="display:none;">
+    <a href="index.html">Start</a>
+    <a href="o_nas.html">O nas</a>
+    <a href="oferta.html">Oferta</a>
+    <a href="cennik.html" class="active">Cennik</a>
+    <a href="aktualnosci.html">Aktualności</a>
+    <a href="galeria.html">Galeria</a>
+    <a href="zgloszenie.html">Zgłoszenie</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
 
-        <!-- Hamburger -->
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-    </div>
 </header>
 
-<script>
-function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("open");
-}
-</script>
+<main class="section">
+  <div class="card col-12">
+    <h1>Cennik</h1>
 
-<main class="container section">
+    <p><strong>Cennik podstawowy – ostateczna wycena zostanie dopasowana do wydarzenia.</strong></p>
 
-    <div class="panel">
+    <p>
+      Ceny usług mogą ulec zmianie w zależności od rodzaju wydarzenia, lokalizacji,
+      liczby uczestników oraz dodatkowych wymagań organizatora.
+    </p>
 
-        <h1 style="color:var(--accent); text-align:center; margin-bottom:20px;">Cennik</h1>
+    <ul style="line-height:1.7;">
+      <li>Stanowisko strzeleckie ASG – od <strong>300 zł/h</strong></li>
+      <li>Stanowisko rozszerzone (cele reaktywne) – od <strong>450 zł/h</strong></li>
+      <li>Wydarzenia masowe – <strong>wycena indywidualna</strong></li>
+    </ul>
 
-        <p style="text-align:center; font-size:1.1rem;">
-            <strong>Cennik podstawowy – ostateczna wycena zostanie dopasowana do wydarzenia.</strong>
-        </p>
+    <p style="margin-top:20px;">
+      Aby otrzymać pełną wycenę, skontaktuj się z nami poprzez formularz zgłoszeniowy
+      lub telefonicznie — przygotujemy dopasowaną ofertę.
+    </p>
 
-        <p style="color:var(--muted); margin-top:10px;">
-            Ceny usług mogą ulec zmianie w zależności od rodzaju wydarzenia, lokalizacji,
-            liczby uczestników oraz dodatkowych wymagań organizatora.
-        </p>
-
-        <ul style="margin-top:20px; line-height:1.7;">
-            <li>Stanowisko strzeleckie – od <strong>300 zł/h</strong></li>
-            <li>Stanowisko rozszerzone (cele reaktywne) – od <strong>450 zł/h</strong></li>
-            <li>Wydarzenia masowe – <strong>wycena indywidualna</strong></li>
-        </ul>
-
-        <p style="margin-top:20px;">
-            Aby otrzymać pełną wycenę, skontaktuj się z nami poprzez formularz zgłoszeniowy
-            lub telefonicznie — przygotujemy dopasowaną ofertę.
-        </p>
-
-    </div>
-
+  </div>
 </main>
 
+<div class="cms-panel"><button class="btn" onclick="toggleCMS()">Edycja</button><button class="btn secondary" onclick="saveAll()">Zapisz</button><button class="btn" onclick="resetAll()">Reset</button></div>
+
 <footer class="footer">
-    © 2025 MobilShot – Wszelkie prawa zastrzeżone
+  <a href="regulamin.html">Regulamin</a> |
+  <a href="rodo.html">RODO</a> |
+  <a href="cookies.html">Cookies</a>
+  <br>© 2025 MobilShot
 </footer>
+
+<script src="cookie.js"></script>
+<script src="cms.js"></script>
+
+<!-- POPRAWIONE ROZWIJANE MENU -->
+<script>
+function toggleMenu(){
+  const nav = document.querySelector('.nav');
+  nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+}
+</script>
 
 </body>
 </html>
