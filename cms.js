@@ -1,59 +1,78 @@
 
-// Ultra-simple global CMS
+// CMS with backups, import/export, password menu
 (function(){
+  const PASSWORD = "admin123";
+
+  function getPageName(){
+    let meta=document.querySelector('meta[name="cms-page"]');
+    if(meta) return meta.content;
+    let p=location.pathname.split('/').pop();
+    return p||"index.html";
+  }
+  const pageName=getPageName();
+  const KEY = pageName+"_html";
+  const BACKUP_KEY = pageName+"_backup";
+
+  // Load saved
+  const saved=localStorage.getItem(KEY);
+  if(saved){
+    document.open(); document.write(saved); document.close();
+  }
+
   let active=false;
+
+  window.cmsLogin=function(){
+    const pw=prompt("Podaj hasło:");
+    if(pw===PASSWORD){
+      alert("Dostęp przyznany");
+      toggleCMS();
+    }else alert("Błędne hasło");
+  };
+
   window.toggleCMS=function(){
     active=!active;
-    document.body.classList.toggle('cms-on',active);
-    if(active) enableEditing(); else disableEditing();
+    if(active){ enableEditing(); } else disableEditing();
   };
 
   function enableEditing(){
-    document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, a, li, span, div[data-edit]')
-      .forEach(el=>{ el.contentEditable=true; el.classList.add('cms-editable'); });
-
-    document.querySelectorAll('img').forEach(img=>{
-      img.addEventListener('click', imageReplaceHandler);
-      img.classList.add('cms-image');
-    });
-
-    if(!document.getElementById('cms-save')){
-      const btn=document.createElement('button');
-      btn.id='cms-save';
-      btn.textContent='Zapisz zmiany';
-      btn.style.position='fixed'; btn.style.bottom='20px'; btn.style.right='20px';
-      btn.style.zIndex='9999'; btn.style.padding='10px 20px';
-      btn.onclick=saveAll;
-      document.body.appendChild(btn);
-    }
+    document.body.contentEditable=true;
   }
-
   function disableEditing(){
-    document.querySelectorAll('.cms-editable').forEach(el=>{
-      el.removeAttribute('contentEditable');
-      el.classList.remove('cms-editable');
-    });
-    document.querySelectorAll('.cms-image').forEach(img=>{
-      img.removeEventListener('click', imageReplaceHandler);
-      img.classList.remove('cms-image');
-    });
-    const b=document.getElementById('cms-save');
-    if(b) b.remove();
+    document.body.contentEditable=false;
   }
 
-  function imageReplaceHandler(e){
-    if(!active) return;
-    const url = prompt("Podaj URL nowego obrazu:");
-    if(url) e.target.src=url;
-  }
+  window.saveAll=function(){
+    const html=document.documentElement.outerHTML;
+    localStorage.setItem(KEY,html);
+    localStorage.setItem(BACKUP_KEY,html);
+    alert("Zapisano + utworzono kopię!");
+    location.reload();
+  };
 
-  function saveAll(){
-    const html = document.documentElement.outerHTML;
-    localStorage.setItem(location.pathname+"_html", html);
-    alert("Zapisano!");
-  }
+  window.exportPage=function(){
+    const data=localStorage.getItem(KEY)||"";
+    const blob=new Blob([data],{type:"text/plain"});
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download=pageName+"_export.html";
+    a.click();
+  };
 
-  // Load saved
-  const saved = localStorage.getItem(location.pathname+"_html");
-  if(saved) document.open(), document.write(saved), document.close();
+  window.importPage=function(){
+    const fileInput=document.createElement("input");
+    fileInput.type="file";
+    fileInput.accept=".html,.txt";
+    fileInput.onchange=e=>{
+      const file=e.target.files[0];
+      const reader=new FileReader();
+      reader.onload=ev=>{
+        localStorage.setItem(KEY,ev.target.result);
+        alert("Zaimportowano!");
+        location.reload();
+      };
+      reader.readAsText(file);
+    };
+    fileInput.click();
+  };
+
 })();
