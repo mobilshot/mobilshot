@@ -1,153 +1,59 @@
-//
-// CMS with persistent page identity + per-page storage + page switcher + RESET BUTTON
-//
 
-(function () {
+// Ultra-simple global CMS
+(function(){
+  let active=false;
+  window.toggleCMS=function(){
+    active=!active;
+    document.body.classList.toggle('cms-on',active);
+    if(active) enableEditing(); else disableEditing();
+  };
 
-    // 1. Sprawdź, czy zapisany dokument ma meta z nazwą strony
-    let saved = localStorage.getItem((location.pathname.split("/").pop() || "index.html") + "_content");
+  function enableEditing(){
+    document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, a, li, span, div[data-edit]')
+      .forEach(el=>{ el.contentEditable=true; el.classList.add('cms-editable'); });
 
-    if (saved) {
-        document.open();
-        document.write(saved);
-        document.close();
-    }
-
-    // --- USTAL NAZWĘ PODSTRONY ---
-    let meta = document.querySelector('meta[name="cms-page"]');
-    let pageName = meta ? meta.getAttribute("content") : (location.pathname.split("/").pop() || "index.html");
-
-    const STORAGE_KEY = pageName + "_content";
-
-
-    // --- PANEL CMS ---
-    const panel = document.createElement("div");
-    panel.style.position = "fixed";
-    panel.style.bottom = "20px";
-    panel.style.right = "20px";
-    panel.style.zIndex = "999999";
-    panel.style.display = "flex";
-    panel.style.flexDirection = "column";
-    panel.style.gap = "10px";
-    panel.style.background = "rgba(255,255,255,0.95)";
-    panel.style.padding = "10px";
-    panel.style.borderRadius = "10px";
-    panel.style.boxShadow = "0 0 12px rgba(0,0,0,0.3)";
-
-
-    // --- LISTA PODSTRON ---
-    const pages = [
-        "index.html",
-        "o_nas.html",
-        "oferta.html",
-        "cennik.html",
-        "galeria.html",
-        "aktualnosci.html",
-        "kontakt.html",
-        "regulamin.html",
-        "rodo.html",
-        "cookies.html",
-        "zgloszenie.html"
-    ];
-
-    const select = document.createElement("select");
-    select.style.padding = "8px";
-    select.style.fontSize = "14px";
-
-    pages.forEach(p => {
-        const opt = document.createElement("option");
-        opt.value = p;
-        opt.textContent = p;
-        if (p === pageName) opt.selected = true;
-        select.appendChild(opt);
+    document.querySelectorAll('img').forEach(img=>{
+      img.addEventListener('click', imageReplaceHandler);
+      img.classList.add('cms-image');
     });
 
-    select.onchange = () => {
-        location.href = select.value;
-    };
+    if(!document.getElementById('cms-save')){
+      const btn=document.createElement('button');
+      btn.id='cms-save';
+      btn.textContent='Zapisz zmiany';
+      btn.style.position='fixed'; btn.style.bottom='20px'; btn.style.right='20px';
+      btn.style.zIndex='9999'; btn.style.padding='10px 20px';
+      btn.onclick=saveAll;
+      document.body.appendChild(btn);
+    }
+  }
 
+  function disableEditing(){
+    document.querySelectorAll('.cms-editable').forEach(el=>{
+      el.removeAttribute('contentEditable');
+      el.classList.remove('cms-editable');
+    });
+    document.querySelectorAll('.cms-image').forEach(img=>{
+      img.removeEventListener('click', imageReplaceHandler);
+      img.classList.remove('cms-image');
+    });
+    const b=document.getElementById('cms-save');
+    if(b) b.remove();
+  }
 
-    // --- PRZYCISKI ---
-    const btnEdit = document.createElement("button");
-    btnEdit.textContent = "✏ Edytuj stronę";
-    btnEdit.style.padding = "10px";
-    btnEdit.style.cursor = "pointer";
+  function imageReplaceHandler(e){
+    if(!active) return;
+    const url = prompt("Podaj URL nowego obrazu:");
+    if(url) e.target.src=url;
+  }
 
-    const btnSave = document.createElement("button");
-    btnSave.textContent = "💾 Zapisz zmiany";
-    btnSave.style.padding = "10px";
-    btnSave.style.cursor = "pointer";
-    btnSave.style.display = "none";
+  function saveAll(){
+    const html = document.documentElement.outerHTML;
+    localStorage.setItem(location.pathname+"_html", html);
+    alert("Zapisano!");
+  }
 
-    // --- NOWY: PRZYCISK CZYSZCZENIA ---
-    const btnReset = document.createElement("button");
-    btnReset.textContent = "🗑 Wyczyść CMS";
-    btnReset.style.padding = "10px";
-    btnReset.style.cursor = "pointer";
-    btnReset.style.background = "#ff3333";
-    btnReset.style.color = "white";
-    btnReset.style.border = "none";
-    btnReset.style.borderRadius = "6px";
-
-    btnReset.onclick = () => {
-        if (confirm("Czy na pewno chcesz usunąć wszystkie zapisane treści CMS?")) {
-            Object.keys(localStorage).forEach(k => {
-                if (k.endsWith("_content")) localStorage.removeItem(k);
-            });
-            alert("Wyczyszczono CMS.");
-            location.reload();
-        }
-    };
-
-
-    // Dodaj wszystko do panelu
-    panel.appendChild(select);
-    panel.appendChild(btnEdit);
-    panel.appendChild(btnSave);
-    panel.appendChild(btnReset);
-    document.body.appendChild(panel);
-
-
-    // --- LOGIKA EDYCJI ---
-    let editing = false;
-
-    btnEdit.onclick = () => {
-        editing = !editing;
-
-        if (editing) {
-            document.body.contentEditable = "true";
-            document.designMode = "on";
-            btnEdit.textContent = "❌ Wyjdź z edycji";
-            btnSave.style.display = "block";
-        } else {
-            document.body.contentEditable = "false";
-            document.designMode = "off";
-            btnEdit.textContent = "✏ Edytuj stronę";
-            btnSave.style.display = "none";
-        }
-    };
-
-
-    // --- ZAPIS STRONY ---
-    btnSave.onclick = () => {
-
-        document.body.contentEditable = "false";
-        document.designMode = "off";
-
-        // Dodaj meta z nazwą strony jeśli nie istnieje
-        if (!meta) {
-            meta = document.createElement("meta");
-            meta.setAttribute("name", "cms-page");
-            meta.setAttribute("content", pageName);
-            document.head.appendChild(meta);
-        }
-
-        const updated = "<!doctype html>\n" + document.documentElement.outerHTML;
-
-        localStorage.setItem(STORAGE_KEY, updated);
-
-        alert("✔ Zapisano stronę: " + pageName);
-        location.reload();
-    };
-
+  // Load saved
+  const saved = localStorage.getItem(location.pathname+"_html");
+  if(saved) document.open(), document.write(saved), document.close();
 })();
