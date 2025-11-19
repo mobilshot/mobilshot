@@ -10,8 +10,16 @@
 
 <body>
 
-    <header>
-        <div class="menu">
+<header class="header">
+    <div class="container nav" id="menu">
+        <div class="brand">
+            <img src="logo.png" alt="MobilShot" style="height:40px;">
+            MobilShot
+        </div>
+
+        <div class="spacer"></div>
+
+        <nav class="menu">
             <a href="index.html">Start</a>
             <a href="onas.html">O nas</a>
             <a href="oferta.html">Oferta</a>
@@ -20,35 +28,51 @@
             <a href="galeria.html">Galeria</a>
             <a href="zgloszenie.html">Zgłoszenie</a>
             <a href="kontakt.html">Kontakt</a>
-        </div>
-    </header>
+        </nav>
 
-    <main>
-        <section class="content">
-            <h1>Cennik</h1>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+</header>
 
-            <p><strong>Cennik podstawowy – ostateczna wycena zostanie dopasowana do wydarzenia.</strong></p>
+<script>
+function toggleMenu(){
+    document.getElementById('menu').classList.toggle('open');
+}
+</script>
 
-            <p>
-                Ceny usług mogą ulec zmianie w zależności od rodzaju wydarzenia, lokalizacji, liczby uczestników
-                oraz dodatkowych wymagań organizatora.
-            </p>
+<main class="container section">
 
-            <ul>
-                <li>Stanowisko strzeleckie ASG – od 300 zł/h</li>
-                <li>Stanowisko rozszerzone (cele reaktywne) – od 450 zł/h</li>
-                <li>Wydarzenia masowe – wycena indywidualna</li>
-            </ul>
+    <div class="panel">
 
-            <p>Aby otrzymać pełną wycenę, skontaktuj się z nami poprzez formularz zgłoszeniowy lub telefonicznie.</p>
+        <h1 style="color:var(--accent); text-align:center; margin-bottom:20px;">Cennik</h1>
 
-        </section>
-    </main>
+        <p style="text-align:center; font-size:1.1rem;">
+            <strong>Cennik podstawowy – ostateczna wycena zostanie dopasowana do wydarzenia.</strong>
+        </p>
 
-    <footer>
-        <p>© 2025 MobilShot – Wszelkie prawa zastrzeżone</p>
-    </footer>
+        <p style="color:var(--muted); margin-top:10px;">
+            Ceny usług mogą ulec zmianie w zależności od rodzaju wydarzenia, lokalizacji,
+            liczby uczestników oraz dodatkowych wymagań organizatora.
+        </p>
+
+        <ul style="margin-top:20px; line-height:1.7;">
+            <li>Stanowisko strzeleckie ASG – od <strong>300 zł/h</strong></li>
+            <li>Stanowisko rozszerzone (cele reaktywne) – od <strong>450 zł/h</strong></li>
+            <li>Wydarzenia masowe – <strong>wycena indywidualna</strong></li>
+        </ul>
+
+        <p style="margin-top:20px;">
+            Aby otrzymać pełną wycenę, skontaktuj się z nami poprzez formularz zgłoszeniowy
+            lub telefonicznie — przygotujemy dopasowaną ofertę.
+        </p>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    © 2025 MobilShot – Wszelkie prawa zastrzeżone
+</footer>
 
 </body>
-
 </html>
