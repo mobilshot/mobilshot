@@ -70,7 +70,45 @@
         <input type="checkbox" name="rodo" required style="margin-top:3px">
         <span>Wyrażam zgodę na przetwarzanie danych osobowych w celu obsługi zgłoszenia, zgodnie z <a href="polityka.html" target="_blank" rel="noopener">Polityką RODO</a>.</span>
       </label>
-      
+      <button class="btn" type="submit">Wyślij zgłoszenie</button>
+      <p id="formStatus" style="display:none" class="success">Dziękujemy! Zgłoszenie zostało wysłane.</p>
+      <p id="formError" style="display:none" class="error">Nie udało się wysłać. Spróbuj ponownie.</p>
+      <input type="hidden" name="_subject" value="Nowe zgłoszenie – MobilShot">
+    </form>
+  </div>
+</div>
+
+
+<footer class='footer'>
+<a href='regulamin.html'>Regulamin</a> |
+<a href='rodo.html'>RODO</a> |
+<a href='cookies.html'>Cookies</a>
+<br>© 2025 MobilShot
+</footer>
+
+
+<script>
+const form = document.getElementById('eventForm');
+const statusOK = document.getElementById('formStatus');
+const statusErr = document.getElementById('formError');
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  statusOK.style.display = 'none';
+  statusErr.style.display = 'none';
+  const data = new FormData(form);
+  try {
+    const r = await fetch(form.action, { method:'POST', body:data, headers:{'Accept':'application/json'} });
+    if (r.ok) { statusOK.style.display = 'block'; form.reset(); window.scrollTo({ top:0, behavior:'smooth' }); }
+    else { statusErr.style.display = 'block'; }
+  } catch(err) { statusErr.style.display = 'block'; }
+});
+</script>
+<script src="cookie.js"></script>
+<script src="cms.js"></script>
+
+<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32">
+  Ta strona używa plików cookies. <a href='cookies.html' style='color:#ff8a3d'>Polityka Cookies</a>.
+  <button id="acceptCookies" class="btn" style="margin-left:10px">Akceptuję</button>
 </div>
 <script>
 if(!localStorage.getItem('cookieAccepted')){
