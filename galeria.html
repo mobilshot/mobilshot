@@ -53,5 +53,33 @@
 <script src="cms.js"></script>
 <script src="news.js"></script>
 <script src="gallery.js"></script>
+
+<script src="news.js"></script>
+<script>
+function renderLatestNews() {
+    const box = document.getElementById("latestNews");
+    if(!box) return;
+    const news = loadNews();
+    if (!news || news.length === 0) {
+        box.innerHTML = "<p>Brak aktualności.</p>";
+        return;
+    }
+    let html = "";
+    const latest = news.slice(-3).reverse();
+    latest.forEach(item => {
+        html += `
+            <div class="news-latest-item">
+                <h4>${item.title}</h4>
+                <p>${item.text}</p>
+                <small>${item.date}</small>
+            </div>
+            <hr>
+        `;
+    });
+    box.innerHTML = html;
+}
+document.addEventListener("DOMContentLoaded", renderLatestNews);
+</script>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 <title>Regulamin</title><link rel='stylesheet' href='style.css'></head>
 <body>
 <header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;' data-edit="regulamin__img1"><div class='hamburger' onclick='toggleMenu()' data-edit="regulamin__div1">☰</div>
-<nav class="nav" style="display:flex;">
+<nav class="nav" style="display:none;">
 <a href="index.html">Start</a>
 <a href="o_nas.html">O nas</a>
 <a href="oferta.html">Oferta</a>
@@ -89,4 +89,32 @@ function toggleMenu(){
   n.style.display = n.style.display==='flex'?'none':'flex';
 }
 </script>
+
+<script src="news.js"></script>
+<script>
+function renderLatestNews() {
+    const box = document.getElementById("latestNews");
+    if(!box) return;
+    const news = loadNews();
+    if (!news || news.length === 0) {
+        box.innerHTML = "<p>Brak aktualności.</p>";
+        return;
+    }
+    let html = "";
+    const latest = news.slice(-3).reverse();
+    latest.forEach(item => {
+        html += `
+            <div class="news-latest-item">
+                <h4>${item.title}</h4>
+                <p>${item.text}</p>
+                <small>${item.date}</small>
+            </div>
+            <hr>
+        `;
+    });
+    box.innerHTML = html;
+}
+document.addEventListener("DOMContentLoaded", renderLatestNews);
+</script>
+
 </body></html>
