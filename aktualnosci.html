@@ -12,7 +12,7 @@
 <a href="kontakt.html">Kontakt</a>
 </nav>
 </header>
-<main class='section'><div class='card col-12' data-edit="aktualnosci__div2"><h2 data-edit="aktualnosci__h21">Dodaj aktualność</h2><label>Tytuł</label><br><input id='newsTitle' style='width:100%;padding:10px;margin:8px 0'><br><label>Treść</label><br><textarea id='newsBody' rows='5' style='width:100%;padding:10px'></textarea><br><button id='addNewsBtn' class='btn'>Dodaj aktualność</button> <button class='btn secondary' onclick='publishNews()'>Publikuj aktualności (online)</button></div><div class='card col-12' data-edit="aktualnosci__div3"><h2 data-edit="aktualnosci__h22">Lista aktualności</h2><div id='newsList' data-edit="aktualnosci__div4"></div></div></main><script src='cookie.js'></script><script src='cms.js'></script>
+<main class='section'><div class='card col-12' data-edit="aktualnosci__div2"><h2 data-edit="aktualnosci__h21">Dodaj aktualność</h2><label>Tytuł</label><br><input id='newsTitle' style='width:100%;padding:10px;margin:8px 0'><br><label>Treść</label><br><textarea id='newsBody' rows='5' style='width:100%;padding:10px'></textarea><br><button id='addNewsBtn' class='btn' onclick="addNews()">Dodaj aktualność</button> <button class='btn secondary' onclick='publishNews()'>Publikuj aktualności (online)</button></div><div class='card col-12' data-edit="aktualnosci__div3"><h2 data-edit="aktualnosci__h22">Lista aktualności</h2><div id='newsList' data-edit="aktualnosci__div4"></div></div><div id="newsContainer"></div></main><script src='cookie.js'></script><script src='cms.js'></script>
 <div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32" data-edit="aktualnosci__div6">
   Ta strona używa plików cookies. <a href='cookies.html' style='color:#ff8a3d'>Polityka Cookies</a>.
   <button id="acceptCookies" class="btn" style="margin-left:10px">Akceptuję</button>
@@ -33,4 +33,4 @@ function toggleMenu(){
   n.style.display = n.style.display==='flex'?'none':'flex';
 }
 </script>
-</body></html>
+<script src="news.js"></script></body></html>
