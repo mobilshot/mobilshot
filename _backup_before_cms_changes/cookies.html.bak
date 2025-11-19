@@ -2,7 +2,7 @@
 <meta name='description' content='Mobilna strzelnica MobilShot – oferta, cennik, zgłoszenia.'><meta charset='utf-8'>
 <title>Polityka Cookies</title><link rel='stylesheet' href='style.css'></head>
 <body>
-<header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;' data-edit="cookies__img1"><div class='hamburger' onclick='toggleMenu()' data-edit="cookies__div1">☰</div>
+<header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;'><div class='hamburger' onclick='toggleMenu()'>☰</div>
 <nav class="nav" style="display:flex;">
 <a href="index.html">Start</a>
 <a href="o_nas.html">O nas</a>
@@ -15,22 +15,22 @@
 </nav>
 </header>
 
-<main class='section'><div class='card col-12' data-edit="cookies__div2">
-<h1 data-edit="cookies__h11">Polityka Cookies</h1>
+<main class='section'><div class='card col-12'>
+<h1>Polityka Cookies</h1>
 
-<h2 data-edit="cookies__h21">1. Czym są pliki Cookies?</h2>
-<p data-edit="cookies__p1">Cookies to niewielkie pliki tekstowe zapisywane na urządzeniu użytkownika. 
+<h2>1. Czym są pliki Cookies?</h2>
+<p>Cookies to niewielkie pliki tekstowe zapisywane na urządzeniu użytkownika. 
 Umożliwiają prawidłowe działanie strony oraz poprawiają komfort korzystania z niej.</p>
 
-<h2 data-edit="cookies__h22">2. Jakie Cookies stosujemy?</h2>
+<h2>2. Jakie Cookies stosujemy?</h2>
 <ul>
 <li><strong>Techniczne</strong> – niezbędne do działania strony, np. zapamiętywanie zgody na cookies.</li>
 <li><strong>Funkcjonalne</strong> – poprawiają obsługę strony (np. zapamiętują ustawienia).</li>
 </ul>
-<p data-edit="cookies__p2">Strona <strong>nie</strong> wykorzystuje cookies marketingowych ani analitycznych.</p>
+<p>Strona <strong>nie</strong> wykorzystuje cookies marketingowych ani analitycznych.</p>
 
-<h2 data-edit="cookies__h23">3. Jak zarządzać Cookies?</h2>
-<p data-edit="cookies__p3">Możesz w każdej chwili zablokować lub usunąć cookies w ustawieniach swojej przeglądarki. 
+<h2>3. Jak zarządzać Cookies?</h2>
+<p>Możesz w każdej chwili zablokować lub usunąć cookies w ustawieniach swojej przeglądarki. 
 Popularne instrukcje:</p>
 <ul>
 <li>Chrome: Ustawienia → Prywatność → Pliki cookie</li>
@@ -38,10 +38,10 @@ Popularne instrukcje:</p>
 <li>Safari: Preferencje → Prywatność</li>
 </ul>
 
-<h2 data-edit="cookies__h24">4. Zgoda na Cookies</h2>
-<p data-edit="cookies__p4">Podczas pierwszej wizyty wyświetlany jest baner cookie z możliwością akceptacji.</p>
+<h2>4. Zgoda na Cookies</h2>
+<p>Podczas pierwszej wizyty wyświetlany jest baner cookie z możliwością akceptacji.</p>
 
-<p data-edit="cookies__p5"><a href='index.html'>Powrót</a></p>
+<p><a href='index.html'>Powrót</a></p>
 </div></main>
 
 <footer class='footer'>

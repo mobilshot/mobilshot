@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;' data-edit="zgloszenie__img1"><div class='hamburger' onclick='toggleMenu()' data-edit="zgloszenie__div1">☰</div>
+<header class="header"><img src='logo.png' alt='MobilShot logo' class='site-logo' style='height:50px;margin-right:10px;'><div class='hamburger' onclick='toggleMenu()'>☰</div>
 <nav class="nav" style="display:flex;">
 <a href="index.html">Start</a>
 <a href="o_nas.html">O nas</a>
@@ -25,44 +25,44 @@
 
 
 <section class="hero">
-  <div class="container" data-edit="zgloszenie__div2">
-    <h1 data-edit="zgloszenie__h11">Zgłoś wydarzenie</h1>
-    <p data-edit="zgloszenie__p1">Uzupełnij poniższy formularz. Odpowiemy tak szybko, jak to możliwe.</p>
+  <div class="container">
+    <h1>Zgłoś wydarzenie</h1>
+    <p>Uzupełnij poniższy formularz. Odpowiemy tak szybko, jak to możliwe.</p>
   </div>
 </section>
 
-<div class="container section" data-edit="zgloszenie__div3">
-  <div class="panel" data-edit="zgloszenie__div4">
+<div class="container section">
+  <div class="panel">
     <form id="eventForm" action="https://formspree.io/f/mgvrneyd" method="POST">
-      <div class="form-row" data-edit="zgloszenie__div5">
-        <div data-edit="zgloszenie__div6">
+      <div class="form-row">
+        <div>
           <label for="name">Imię i nazwisko</label>
           <input class="input" id="name" name="name" type="text" required>
         </div>
-        <div data-edit="zgloszenie__div7">
+        <div>
           <label for="email">Email</label>
           <input class="input" id="email" name="email" type="email" required>
         </div>
       </div>
-      <div class="form-row" data-edit="zgloszenie__div8">
-        <div data-edit="zgloszenie__div9">
+      <div class="form-row">
+        <div>
           <label for="phone">Numer telefonu</label>
           <input class="input" id="phone" name="phone" type="tel" required>
         </div>
-        <div data-edit="zgloszenie__div10">
+        <div>
           <label for="date">Data wydarzenia</label>
           <input class="input" id="date" name="date" type="date">
         </div>
       </div>
-      <div data-edit="zgloszenie__div11">
+      <div>
         <label for="title">Tytuł / nazwa wydarzenia</label>
         <input class="input" id="title" name="title" type="text" required>
       </div>
-      <div data-edit="zgloszenie__div12">
+      <div>
         <label for="desc">Opis wydarzenia</label>
         <textarea id="desc" name="description" required></textarea>
       </div>
-      <div data-edit="zgloszenie__div13">
+      <div>
         <label for="photo">Dodaj zdjęcie (opcjonalnie)</label>
         <input class="input" id="photo" name="attachment" type="file" accept="image/*">
       </div>
@@ -71,8 +71,8 @@
         <span>Wyrażam zgodę na przetwarzanie danych osobowych w celu obsługi zgłoszenia, zgodnie z <a href="polityka.html" target="_blank" rel="noopener">Polityką RODO</a>.</span>
       </label>
       <button class="btn" type="submit">Wyślij zgłoszenie</button>
-      <p id="formStatus" style="display:none" class="success" data-edit="zgloszenie__p2">Dziękujemy! Zgłoszenie zostało wysłane.</p>
-      <p id="formError" style="display:none" class="error" data-edit="zgloszenie__p3">Nie udało się wysłać. Spróbuj ponownie.</p>
+      <p id="formStatus" style="display:none" class="success">Dziękujemy! Zgłoszenie zostało wysłane.</p>
+      <p id="formError" style="display:none" class="error">Nie udało się wysłać. Spróbuj ponownie.</p>
       <input type="hidden" name="_subject" value="Nowe zgłoszenie – MobilShot">
     </form>
   </div>
@@ -106,7 +106,7 @@ form.addEventListener('submit', async (e)=>{
 <script src="cookie.js"></script>
 <script src="cms.js"></script>
 
-<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32" data-edit="zgloszenie__div14">
+<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#17181a;padding:15px;color:#e9e9ec;display:none;z-index:999;border-top:1px solid #2a2d32">
   Ta strona używa plików cookies. <a href='cookies.html' style='color:#ff8a3d'>Polityka Cookies</a>.
   <button id="acceptCookies" class="btn" style="margin-left:10px">Akceptuję</button>
 </div>
