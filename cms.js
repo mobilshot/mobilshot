@@ -1,59 +1,80 @@
+//
+// Ultra-simple global inline CMS with per-page storage key
+//
 
-// Ultra-simple global CMS
-(function(){
-  let active=false;
-  window.toggleCMS=function(){
-    active=!active;
-    document.body.classList.toggle('cms-on',active);
-    if(active) enableEditing(); else disableEditing();
-  };
+(function () {
 
-  function enableEditing(){
-    document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, a, li, span, div[data-edit]')
-      .forEach(el=>{ el.contentEditable=true; el.classList.add('cms-editable'); });
+    // Pobieramy nazwę pliku strony, np. "cennik.html"
+    const pageName = location.pathname.split("/").pop() || "index.html";
 
-    document.querySelectorAll('img').forEach(img=>{
-      img.addEventListener('click', imageReplaceHandler);
-      img.classList.add('cms-image');
-    });
+    // Tworzymy unikalny klucz do localStorage
+    const STORAGE_KEY = pageName + "_content";
 
-    if(!document.getElementById('cms-save')){
-      const btn=document.createElement('button');
-      btn.id='cms-save';
-      btn.textContent='Zapisz zmiany';
-      btn.style.position='fixed'; btn.style.bottom='20px'; btn.style.right='20px';
-      btn.style.zIndex='9999'; btn.style.padding='10px 20px';
-      btn.onclick=saveAll;
-      document.body.appendChild(btn);
+    // --- 1. Odczyt zapisanej treści ---
+    let saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+        document.open();
+        document.write(saved);
+        document.close();
     }
-  }
 
-  function disableEditing(){
-    document.querySelectorAll('.cms-editable').forEach(el=>{
-      el.removeAttribute('contentEditable');
-      el.classList.remove('cms-editable');
-    });
-    document.querySelectorAll('.cms-image').forEach(img=>{
-      img.removeEventListener('click', imageReplaceHandler);
-      img.classList.remove('cms-image');
-    });
-    const b=document.getElementById('cms-save');
-    if(b) b.remove();
-  }
+    // --- 2. Dodanie panelu CMS ---
+    const panel = document.createElement("div");
+    panel.style.position = "fixed";
+    panel.style.bottom = "20px";
+    panel.style.right = "20px";
+    panel.style.zIndex = "999999";
+    panel.style.display = "flex";
+    panel.style.flexDirection = "column";
+    panel.style.gap = "10px";
 
-  function imageReplaceHandler(e){
-    if(!active) return;
-    const url = prompt("Podaj URL nowego obrazu:");
-    if(url) e.target.src=url;
-  }
+    const btnEdit = document.createElement("button");
+    btnEdit.textContent = "✏ Edytuj stronę";
+    btnEdit.style.padding = "10px 14px";
+    btnEdit.style.fontSize = "14px";
+    btnEdit.style.cursor = "pointer";
 
-  function saveAll(){
-    const html = document.documentElement.outerHTML;
-    localStorage.setItem(location.pathname+"_html", html);
-    alert("Zapisano!");
-  }
+    const btnSave = document.createElement("button");
+    btnSave.textContent = "💾 Zapisz zmiany";
+    btnSave.style.padding = "10px 14px";
+    btnSave.style.fontSize = "14px";
+    btnSave.style.cursor = "pointer";
+    btnSave.style.display = "none";
 
-  // Load saved
-  const saved = localStorage.getItem(location.pathname+"_html");
-  if(saved) document.open(), document.write(saved), document.close();
+    panel.appendChild(btnEdit);
+    panel.appendChild(btnSave);
+    document.body.appendChild(panel);
+
+    let isEditing = false;
+
+    // --- 3. Tryb edycji ---
+    btnEdit.onclick = () => {
+        if (!isEditing) {
+            document.body.contentEditable = "true";
+            document.designMode = "on";
+            btnEdit.textContent = "❌ Wyjdź z edycji";
+            btnSave.style.display = "block";
+            isEditing = true;
+        } else {
+            document.body.contentEditable = "false";
+            document.designMode = "off";
+            btnEdit.textContent = "✏ Edytuj stronę";
+            btnSave.style.display = "none";
+            isEditing = false;
+        }
+    };
+
+    // --- 4. Zapis ---
+    btnSave.onclick = () => {
+        document.body.contentEditable = "false";
+        document.designMode = "off";
+
+        const updated = "<!doctype html>\n" + document.documentElement.outerHTML;
+
+        localStorage.setItem(STORAGE_KEY, updated);
+
+        alert("Zapisano zmiany dla: " + pageName);
+        location.reload();
+    };
+
 })();
