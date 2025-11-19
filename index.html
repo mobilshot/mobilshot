@@ -22,6 +22,7 @@
   </div>
   <div class='card col-12' data-edit="index__div3">
     <h3 data-edit="index__h31">Ostatnie aktualności</h3>
+<div id=\"latestNews\"></div>
     <div id='news_preview_list' data-edit="index__div4"></div>
     <p style='margin-top:10px' data-edit="index__p2"><a class='btn' href='aktualnosci.html'>Zobacz wszystkie</a></p>
   </div>
@@ -58,4 +59,31 @@ function toggleMenu(){
   n.style.display = n.style.display==='flex'?'none':'flex';
 }
 </script>
+
+<script src="news.js"></script>
+<script>
+function renderLatestNews() {
+    const box = document.getElementById("latestNews");
+    const news = loadNews();
+    if (!news || news.length === 0) {
+        box.innerHTML = "<p>Brak aktualności.</p>";
+        return;
+    }
+    let html = "";
+    const latest = news.slice(-3).reverse();
+    latest.forEach(item => {
+        html += `
+            <div class="news-latest-item">
+                <h4>${item.title}</h4>
+                <p>${item.text}</p>
+                <small>${item.date}</small>
+            </div>
+            <hr>
+        `;
+    });
+    box.innerHTML = html;
+}
+document.addEventListener("DOMContentLoaded", renderLatestNews);
+</script>
+
 </body></html>
